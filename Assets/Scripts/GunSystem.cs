@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using EZCameraShake;
 
 public class GunSystem : MonoBehaviour
 {
@@ -22,7 +23,6 @@ public class GunSystem : MonoBehaviour
     //Graphics
     public GameObject muzzleFlash, bulletHoleGraphic;
     public TextMeshProUGUI text;
-
 
     private void Start()
     {
@@ -97,7 +97,7 @@ public class GunSystem : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Debug.Log("WE'RE SHOOTING!!!!!!!!!" + hit.collider.gameObject.name);
-            if (hit.collider.gameObject.name == "Enemy mesh")
+            if (hit.collider.gameObject.CompareTag("Enemy"))
             {
 
                 hit.transform.parent.gameObject.GetComponent<EnemyAi>().TakeDamage(damage);
@@ -108,7 +108,8 @@ public class GunSystem : MonoBehaviour
 
 
         //Graphics
-
+        //ShakeCamera
+        CameraShaker.Instance.ShakeOnce(0.1f, 0.1f, .1f, 1f);
         // Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
         muzzleFlash.SetActive(true);
 

@@ -31,14 +31,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Camera rotation
-        mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
+        //mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
 
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
+        //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
 
-        verticalRotStore += mouseInput.y;
-        verticalRotStore = Mathf.Clamp(verticalRotStore, -60f, 60f);
+        //verticalRotStore += mouseInput.y;
+        //verticalRotStore = Mathf.Clamp(verticalRotStore, -60f, 60f);
 
-        viewPoint.rotation = Quaternion.Euler(-verticalRotStore, viewPoint.rotation.eulerAngles.y, viewPoint.rotation.eulerAngles.z);
+        //viewPoint.rotation = Quaternion.Euler(-verticalRotStore, viewPoint.rotation.eulerAngles.y, viewPoint.rotation.eulerAngles.z);
 
 
 
@@ -108,8 +108,8 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        cam.transform.position = viewPoint.transform.position;
-        cam.transform.rotation = viewPoint.transform.rotation;
+        //cam.transform.position = viewPoint.transform.position;
+        //cam.transform.rotation = viewPoint.transform.rotation;
     }
 
     private void OnTriggerEnter(Collider other)
