@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     public float health = 100f;
     public float maxHealth = 100f;
-    public TextMeshProUGUI healthInfo;
+    public Slider healthSlider;
 
     void Start()
     {
@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 health += (maxHealth - health);
             }
-            healthInfo.text = health.ToString();
+            healthSlider.value = health;
             Destroy(other.gameObject);
         }
     }
@@ -34,6 +34,6 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-        healthInfo.text = health.ToString();
+        healthSlider.value = health;
     }
 }

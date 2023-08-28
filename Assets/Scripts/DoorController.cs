@@ -16,6 +16,20 @@ public class DoorController : MonoBehaviour
             Debug.Log("Enemy entered collider");
             if (doorTrigger)
             {
+                myDoor.Play("glass_door_open", 0, 0.0f);
+            }
+
+            if (doubleDoorTrigger)
+            {
+                myDoor.Play("door_1_open", 0, 0.0f);
+            }
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("Enemy entered collider");
+            if (doorTrigger)
+            {
                 myDoor.Play("Door animation", 0, 0.0f);
             }
 
@@ -32,7 +46,8 @@ public class DoorController : MonoBehaviour
         {
             if (doorTrigger)
             {
-                myDoor.Play("Door close", 0, 0.0f);
+                myDoor.Play("glass_door_close", 0, 0.0f);
+                
             }
         }
     }
