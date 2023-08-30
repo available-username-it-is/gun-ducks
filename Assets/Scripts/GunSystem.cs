@@ -21,8 +21,11 @@ public class GunSystem : MonoBehaviour
     public LayerMask whatIsEnemy;
 
     //Graphics
-    public GameObject muzzleFlash, bulletHoleGraphic;
+    public CameraShake cameraShake;
+    public float cameraShakeDuration, cameraShakeMagnitude;
+    public GameObject bulletHoleGraphic;
     public TextMeshProUGUI text;
+    public ParticleSystem firstMuzzleFlash, secondMuzzleFlash;
 
     private void Start()
     {
@@ -54,7 +57,6 @@ public class GunSystem : MonoBehaviour
     }
     private void MyInput()
     {
-        muzzleFlash.SetActive(false);
         if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
@@ -84,6 +86,12 @@ public class GunSystem : MonoBehaviour
     {
         readyToShoot = false;
 
+        firstMuzzleFlash.Play();
+        if (secondMuzzleFlash != null)
+        {
+            secondMuzzleFlash.Play();
+        }
+
         //Spread
         float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
@@ -103,15 +111,15 @@ public class GunSystem : MonoBehaviour
                 hit.transform.parent.gameObject.GetComponent<EnemyAi>().TakeDamage(damage);
             }
             GameObject bulletImpactObject = Instantiate(bulletHoleGraphic, hit.point + hit.normal * .002f, Quaternion.LookRotation(hit.normal, Vector3.up));
-            Destroy(bulletImpactObject, 10f);
+            Destroy(bulletImpactObject, 2f);
         }
 
 
         //Graphics
         //ShakeCamera
+        StartCoroutine(cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude));
         CameraShaker.Instance.ShakeOnce(0.1f, 0.1f, .1f, 1f);
-        // Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
-        muzzleFlash.SetActive(true);
+        
 
         bulletsLeft--;
         bulletsShot--;

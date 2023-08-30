@@ -11,7 +11,7 @@ public class DoorController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        if (other.CompareTag("Player"))
         {
             Debug.Log("Enemy entered collider");
             if (doorTrigger)
@@ -25,24 +25,11 @@ public class DoorController : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Enemy"))
-        {
-            Debug.Log("Enemy entered collider");
-            if (doorTrigger)
-            {
-                myDoor.Play("Door animation", 0, 0.0f);
-            }
-
-            if (doubleDoorTrigger)
-            {
-                myDoor.Play("door_1_open", 0, 0.0f);
-            }
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        if (other.CompareTag("Player"))
         {
             if (doorTrigger)
             {

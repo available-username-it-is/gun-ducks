@@ -12,6 +12,8 @@ public class EnemyAi : MonoBehaviour
 
     public float health;
 
+    public int damage;
+
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -86,6 +88,7 @@ public class EnemyAi : MonoBehaviour
             ///Attack code here
             
             Rigidbody rb = Instantiate(projectile, bulletSpawnPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.transform.parent = transform;
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 2f, ForceMode.Impulse);
             
@@ -104,7 +107,7 @@ public class EnemyAi : MonoBehaviour
     {
         health -= damage;
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.1f);
     }
     private void DestroyEnemy()
     {
