@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using EZCameraShake;
+using UnityEngine.UI;
 
 public class GunSystem : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class GunSystem : MonoBehaviour
     public CameraShake cameraShake;
     public float cameraShakeDuration, cameraShakeMagnitude;
     public GameObject bulletHoleGraphic;
-    public TextMeshProUGUI text;
+    public TextMeshProUGUI magazineSizeText, totalBulletsText;
     public ParticleSystem firstMuzzleFlash, secondMuzzleFlash;
 
     private void Start()
@@ -53,7 +54,8 @@ public class GunSystem : MonoBehaviour
 
     public void UpdateAmmo()
     {
-        text.SetText(bulletsLeft + " / " + totalAmmo);
+        magazineSizeText.SetText(bulletsLeft + "/");
+        totalBulletsText.SetText(totalAmmo.ToString());
     }
     private void MyInput()
     {

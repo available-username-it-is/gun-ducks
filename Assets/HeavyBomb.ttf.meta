@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf371b26bfc75bd429dadbca330dd2e2
+guid: 193090acd84542e4c9efb967441d8626
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Zekton
+  - HeavyBomb
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

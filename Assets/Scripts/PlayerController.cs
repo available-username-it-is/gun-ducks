@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public Camera cam;
 
     public GunSystem[] allGuns;
+    public Image weaponIconObject;
+    public Image weaponIcon;
     private int selectedGun;
 
     [SerializeField] CharacterController characterController;
@@ -132,5 +135,7 @@ public class PlayerController : MonoBehaviour
         }
 
         allGuns[selectedGun].gameObject.SetActive(true);
+
+        weaponIconObject.sprite = allGuns[selectedGun].gameObject.GetComponent<Image>().sprite;
     }
 }
