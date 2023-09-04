@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyAi : MonoBehaviour
 {
@@ -10,9 +11,17 @@ public class EnemyAi : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    public Slider bossHealthSlider;
+
+    public ParticleSystem hitEffect, deathEffect;
+
+    public Animator deathAnimation;
+
     public float health;
 
     public int damage;
+
+    public bool isBoss;
 
     //Patroling
     public Vector3 walkPoint;
@@ -107,7 +116,29 @@ public class EnemyAi : MonoBehaviour
     {
         health -= damage;
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.1f);
+        hitEffect.Play();
+
+        if (isBoss)
+        {
+            bossHealthSlider.value = health;
+        }
+
+        if (health <= 0)
+        {
+            if (!isBoss)
+            {
+                deathAnimation.Play("Basic zombie death");
+                Invoke(nameof(DestroyEnemy), 1f);
+            } else
+            {
+                
+                deathEffect.Play();
+                damage = 0;
+                
+                Invoke(nameof(DestroyEnemy), 10f);
+            }
+
+        }
     }
     private void DestroyEnemy()
     {

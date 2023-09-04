@@ -7,9 +7,9 @@ public class GunSystem : MonoBehaviour
 {
     //Gun stats
     public int damage;
-    public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots, adsSpeed = 5f;
+    public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots, shootDistance, adsSpeed = 5f;
     public int magazineSize, bulletsPerTap, magazineAmount, totalAmmo, scopePower;
-    public bool allowButtonHold;
+    public bool allowButtonHold, isCold;
     int bulletsLeft, bulletsShot;
 
     //bools 
@@ -20,11 +20,12 @@ public class GunSystem : MonoBehaviour
     public Transform attackPoint;
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
+    public Animator weaponAnimation;
 
     //Graphics
     public CameraShake cameraShake;
     public float cameraShakeDuration, cameraShakeMagnitude;
-    public GameObject bulletHoleGraphic;
+    public GameObject bulletHoleGraphic, enemyHit;
     public TextMeshProUGUI magazineSizeText, totalBulletsText;
     public ParticleSystem firstMuzzleFlash, secondMuzzleFlash;
 
@@ -65,7 +66,7 @@ public class GunSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
 
         //Shoot
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
+        if (readyToShoot && shooting && !reloading && (bulletsLeft > 0 || isCold))
         {
             bulletsShot = bulletsPerTap;
             Shoot();
@@ -88,7 +89,10 @@ public class GunSystem : MonoBehaviour
     {
         readyToShoot = false;
 
-        firstMuzzleFlash.Play();
+        if (firstMuzzleFlash != null)
+        {
+            firstMuzzleFlash.Play();
+        }
         if (secondMuzzleFlash != null)
         {
             secondMuzzleFlash.Play();
@@ -104,16 +108,26 @@ public class GunSystem : MonoBehaviour
         Ray ray = fpsCam.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
         ray.origin = fpsCam.transform.position;
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (weaponAnimation != null)
         {
+            weaponAnimation.Play("Knife", 0, 0.0f);
+        }
+
+        if (Physics.Raycast(ray, out RaycastHit hit, shootDistance))
+        {
+            
             Debug.Log("WE'RE SHOOTING!!!!!!!!!" + hit.collider.gameObject.name);
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
-
                 hit.transform.parent.gameObject.GetComponent<EnemyAi>().TakeDamage(damage);
             }
-            GameObject bulletImpactObject = Instantiate(bulletHoleGraphic, hit.point + hit.normal * .002f, Quaternion.LookRotation(hit.normal, Vector3.up));
-            Destroy(bulletImpactObject, 2f);
+
+
+            if (bulletHoleGraphic != null && !hit.collider.gameObject.CompareTag("Enemy"))
+            {
+                GameObject bulletImpactObject = Instantiate(bulletHoleGraphic, hit.point + hit.normal * .002f, Quaternion.LookRotation(hit.normal, Vector3.up));
+                Destroy(bulletImpactObject, 1f);
+            }
         }
 
 
@@ -122,9 +136,11 @@ public class GunSystem : MonoBehaviour
         StartCoroutine(cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude));
         CameraShaker.Instance.ShakeOnce(0.1f, 0.1f, .1f, 1f);
         
-
-        bulletsLeft--;
-        bulletsShot--;
+        if (!isCold)
+        {
+            bulletsLeft--;
+            bulletsShot--;
+        }
 
         Invoke("ResetShot", timeBetweenShooting);
 

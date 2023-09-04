@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 7830403812178487050}
   - {fileID: 8337858444955294562}
+  - {fileID: 6340685532434300712}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &722880412069423221
@@ -77,8 +78,15 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8
+  bossHealthSlider: {fileID: 0}
+  hitEffect: {fileID: 8546495929535443221}
+  deathAnimation: {fileID: 4002383899920721978}
   health: 120
   damage: 15
+  isBoss: 0
+  isBasic: 1
+  isLight: 0
+  isHeavy: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
@@ -100,6 +108,7 @@ GameObject:
   - component: {fileID: 35885382061575623}
   - component: {fileID: 6426071761392773236}
   - component: {fileID: 2671845995927485014}
+  - component: {fileID: 4002383899920721978}
   m_Layer: 0
   m_Name: zombie-basic-duck
   m_TagString: Enemy
@@ -194,6 +203,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1754357403575112295, guid: 615b6772af160104a8b3b98aa39ea76a, type: 3}
+--- !u!95 &4002383899920721978
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4137364282992100853}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f37e9b87e494f434c89e388c5db25dcf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7228590958821899794
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,3 +278,70 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1001 &5034602571069201318
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4751738011800055678}
+    m_Modifications:
+    - target: {fileID: 1306083167549875342, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306083167549875342, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.591
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306083167549875342, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.338
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306083167549875342, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306083167549875342, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306083167549875342, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306083167549875342, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306083167549875342, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306083167549875342, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306083167549875342, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379796620229308450, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+      propertyPath: m_Name
+      value: HitEffect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+--- !u!4 &6340685532434300712 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1306083167549875342, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+  m_PrefabInstance: {fileID: 5034602571069201318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8546495929535443221 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3694570834494565043, guid: a067342c6e42b3a4890493dcd6a012ef, type: 3}
+  m_PrefabInstance: {fileID: 5034602571069201318}
+  m_PrefabAsset: {fileID: 0}
