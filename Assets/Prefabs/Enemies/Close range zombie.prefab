@@ -80,13 +80,11 @@ MonoBehaviour:
     m_Bits: 8
   bossHealthSlider: {fileID: 0}
   hitEffect: {fileID: 8546495929535443221}
-  deathAnimation: {fileID: 4002383899920721978}
+  deathEffect: {fileID: 0}
+  zombieAnimation: {fileID: 4002383899920721978}
   health: 120
   damage: 15
   isBoss: 0
-  isBasic: 1
-  isLight: 0
-  isHeavy: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5

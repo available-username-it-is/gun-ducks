@@ -11,6 +11,7 @@ public class ElevatorUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             elevator.Play("Elevator up", 0, 0.0f);
+            gameObject.SetActive(false);
         }
 
     }

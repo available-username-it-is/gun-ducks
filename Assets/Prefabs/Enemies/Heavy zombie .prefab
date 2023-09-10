@@ -135,7 +135,8 @@ MonoBehaviour:
     m_Bits: 8
   bossHealthSlider: {fileID: 0}
   hitEffect: {fileID: 4762787614974089621}
-  deathAnimation: {fileID: 4294231833436674022}
+  deathEffect: {fileID: 0}
+  zombieAnimation: {fileID: 4294231833436674022}
   health: 250
   damage: 20
   isBoss: 0

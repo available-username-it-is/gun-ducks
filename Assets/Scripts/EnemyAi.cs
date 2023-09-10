@@ -15,7 +15,7 @@ public class EnemyAi : MonoBehaviour
 
     public ParticleSystem hitEffect, deathEffect;
 
-    public Animator deathAnimation;
+    public Animator zombieAnimation;
 
     public float health;
 
@@ -100,6 +100,7 @@ public class EnemyAi : MonoBehaviour
             rb.transform.parent = transform;
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 2f, ForceMode.Impulse);
+            // zombieAnimation.Play("Zombie attack");
             
             ///End of attack code
 
@@ -127,7 +128,7 @@ public class EnemyAi : MonoBehaviour
         {
             if (!isBoss)
             {
-                deathAnimation.Play("Basic zombie death");
+                zombieAnimation.Play("Basic zombie death");
                 Invoke(nameof(DestroyEnemy), 1f);
             } else
             {
