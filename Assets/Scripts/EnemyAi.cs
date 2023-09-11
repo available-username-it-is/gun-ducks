@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
@@ -11,9 +10,13 @@ public class EnemyAi : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    public MeshRenderer mesh;
+
     public Slider bossHealthSlider;
 
-    public ParticleSystem hitEffect, deathEffect;
+    public CameraShake cameraShake;
+
+    public ParticleSystem hitEffect, deathEffect, attackEffect;
 
     public Animator zombieAnimation;
 
@@ -92,7 +95,7 @@ public class EnemyAi : MonoBehaviour
 
         transform.LookAt(player);
 
-        if (!alreadyAttacked)
+        if (!alreadyAttacked && health > 0)
         {
             ///Attack code here
             
@@ -100,8 +103,14 @@ public class EnemyAi : MonoBehaviour
             rb.transform.parent = transform;
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 2f, ForceMode.Impulse);
-            // zombieAnimation.Play("Zombie attack");
-            
+            if (!isBoss)
+            {
+                zombieAnimation.Play("Zombie attack");
+            } else
+            {
+                zombieAnimation.Play("Boss attack");
+                attackEffect.Play();
+            }
             ///End of attack code
 
             alreadyAttacked = true;
@@ -127,13 +136,13 @@ public class EnemyAi : MonoBehaviour
         if (health <= 0)
         {
             if (!isBoss)
-            {
+            {Invoke(nameof(DestroyEnemy), 0.65f);
                 zombieAnimation.Play("Basic zombie death");
-                Invoke(nameof(DestroyEnemy), 1f);
             } else
             {
-                
+                StartCoroutine(cameraShake.Shake(0.5f, 0.5f));
                 deathEffect.Play();
+                mesh.enabled = false;
                 damage = 0;
                 
                 Invoke(nameof(DestroyEnemy), 10f);

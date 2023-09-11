@@ -134,7 +134,7 @@ public class GunSystem : MonoBehaviour
         //Graphics
         //ShakeCamera
         StartCoroutine(cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude));
-        CameraShaker.Instance.ShakeOnce(0.1f, 0.1f, .1f, 1f);
+        //CameraShaker.Instance.ShakeOnce(0.1f, 0.1f, .1f, 1f);
         
         if (!isCold)
         {
