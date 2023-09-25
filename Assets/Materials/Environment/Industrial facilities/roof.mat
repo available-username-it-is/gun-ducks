@@ -31,6 +31,7 @@ Material:
     m_Floats:
     - _DstBlend: 0
     - _Mode: 0
+    - _SrcBlend: 1
     - _ZWrite: 1
     m_Colors: []
   m_BuildTextureStacks: []

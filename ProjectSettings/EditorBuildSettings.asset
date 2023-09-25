@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Hangar.unity
+    guid: 041c9849c1427104ab78c9b4bb17050b
   m_configObjects: {}

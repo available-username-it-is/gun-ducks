@@ -1172,15 +1172,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b51abb67f7e4c2f458a31031e7278b5e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -117.4
+      value: 467.31
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b51abb67f7e4c2f458a31031e7278b5e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.000027179718
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b51abb67f7e4c2f458a31031e7278b5e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 114.8
+      value: 169.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b51abb67f7e4c2f458a31031e7278b5e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1481,8 +1481,38 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b51abb67f7e4c2f458a31031e7278b5e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5306243859601866255}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b51abb67f7e4c2f458a31031e7278b5e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2267406267283700140}
   m_SourcePrefab: {fileID: 100100000, guid: b51abb67f7e4c2f458a31031e7278b5e, type: 3}
+--- !u!1 &3876455065413044692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b51abb67f7e4c2f458a31031e7278b5e, type: 3}
+  m_PrefabInstance: {fileID: 4110245520511366277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2267406267283700140
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3876455065413044692}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!4 &4503669976301114222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b51abb67f7e4c2f458a31031e7278b5e, type: 3}
